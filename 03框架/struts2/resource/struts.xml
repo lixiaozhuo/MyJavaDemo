@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<!-- 配置常量 -->
+	
+	<!-- 动态方法调用,不推荐,默认关闭 -->
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"/> -->
+	
+	<!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下 使用),开发阶段最好打开 ,开发者模式包含此设置 -->
+	<!-- <constant name="struts.configuration.xml.reload" value="true"/> -->
+
+	<!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 配置请求后缀 -->
+	<constant name="struts.action.extension" value="action,,"></constant>
+	
+	
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true" />
+	
+	<!-- 配置页面标签主题 -->
+	<constant name="struts.ui.theme" value="simple"/>
+	
+	<!-- 配置国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="app"/>
+	
+	<include file="com/lixiaozhuo/_01_helloworld/struts-hello.xml"></include>
+	<include file="com/lixiaozhuo/_02_pkg/struts-pkg.xml"></include>
+	<include file="com/lixiaozhuo/_03_action_result/struts-action.xml"></include>
+	<include file="com/lixiaozhuo/_04_type/struts-type.xml"></include>
+	<include file="com/lixiaozhuo/_05_method/struts-method.xml"></include>
+	<include file="com/lixiaozhuo/_06_api/struts-api.xml"></include>
+	<include file="com/lixiaozhuo/_07_parm/struts-parm.xml"></include>
+	<include file="com/lixiaozhuo/_08_interceptor/struts-inte.xml"></include>
+	<include file="com/lixiaozhuo/_09_vs/struts-vs.xml"></include>
+	<include file="com/lixiaozhuo/_10_validation/struts-vali.xml"></include>
+	<include file="com/lixiaozhuo/_11_upload/struts-upload.xml"></include>
+	<include file="com/lixiaozhuo/_12_download/struts-download.xml"></include>
+	<include file="com/lixiaozhuo/_13_tag/struts-tag.xml"></include>
+</struts>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="departmentService" class="com.lixiaozhuo.service.impl.DepartmentServiceImpl">
+		<property name="departmentDAO" ref="departmentDAO"/>
+	</bean>
+	<bean id="employeeService" class="com.lixiaozhuo.service.impl.EmployeeServiceImpl">
+		<property name="employeeDAO" ref="employeeDAO"/>
+	</bean>
+	<bean id="permissionService" class="com.lixiaozhuo.service.impl.PermissionServiceImpl">
+		<property name="permissionDAO" ref="permissionDAO"/>
+	</bean>
+	<bean id="roleService" class="com.lixiaozhuo.service.impl.RoleServiceImpl">
+		<property name="roleDAO" ref="roleDAO"/>
+	</bean>
+</beans>

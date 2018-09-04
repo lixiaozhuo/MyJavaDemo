@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lixiaozhuo._13_query.domain">
+	<import class="com.lixiaozhuo._13_query._04_result.EmployeeVO" rename="EmployeeVO"/>
+	<class name="Department" table="department">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="sn" column="sn"/>
+		<property name="name" column="name"/>
+		<property name="provice" column="provice"/>
+		<property name="city" column="city"/>
+		<property name="street" column="street"/>
+		<many-to-one name="manager" column="manager_id"/>
+	</class>
+	<class name="Employee" table="employee">
+		<cache usage="read-only"/>
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="name"/>
+		<property name="salary" column="salay"/>
+		<property name="hireDate" column="hireDate" type="date"/>
+		<many-to-one name="dept" column="dept_id"/>
+	</class>
+	<class name="Phone" table="phone">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="types" column="types"/>
+		<property name="number" column="number"/>
+		<many-to-one name="employee" column="employee_id"/>
+	</class>
+	<class name="Project" table="project">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="name"/>
+		<many-to-one name="manager" column="manager_id"/>
+		<bag name="emps" table="project_employee">
+			<key column="project_id"/>
+			<many-to-many class="Employee" column="employee_id"/>
+		</bag>
+	</class>
+	
+	
+	<query name="test">
+		SELECT e FROM Employee e WHERE e.salary > (SELECT AVG(ee.salary) FROM Employee ee)
+	</query>
+</hibernate-mapping>

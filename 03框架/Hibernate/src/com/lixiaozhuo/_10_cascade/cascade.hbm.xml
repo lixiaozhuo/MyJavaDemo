@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lixiaozhuo._10_cascade">
+	<!-- many方 -->
+	<class name="SaleOrderItem" table="t_saleorderbillitem">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="productName" column="productName"/>
+		<property name="number" column="number"/>
+		<many-to-one name="bill" >
+			<column name="bill_id" />
+		</many-to-one>	
+	</class>
+	<!-- one方 -->
+	<class name="SaleOrderBill" table="t_saleorderbill">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="sn" column="sn"/>
+		<property name="inputUser" column="inputUser"/>
+		<!-- 
+			级联选项:
+				0,none:缺省值,不做任何级联操作
+				1,save-update:在主对象上面执行save/update的方法,级联的保存临时的从对象,更新游离的从对象
+				2,delete:在主对象上面执行delete方法,级联的删除所有的从对象(要能够级联操作,必须要求在当主前对象中有从对象
+				3,all:save-update+delete
+				4,delete-orphan:删除和主对象打破了关系的明细对象(孤立)
+				5,all-delet-orphan:all+delete-orphan
+		 -->
+		<bag name="items" inverse="true" cascade="all">
+			<key column="bill_id"/>
+			<one-to-many class="SaleOrderItem"/>
+		</bag>
+	</class>
+</hibernate-mapping>

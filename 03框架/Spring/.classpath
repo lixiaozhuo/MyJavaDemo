@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resource"/>
+	<classpathentry kind="lib" path="lib/spring-beans-5.0.8.RELEASE.jar" sourcepath="C:/file/Java/JAR/Spring/spring-framework-5.0.8.RELEASE/libs/spring-beans-5.0.8.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-5.0.8.RELEASE.jar" sourcepath="C:/file/Java/JAR/Spring/spring-framework-5.0.8.RELEASE/libs/spring-core-5.0.8.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/spring-test-5.0.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aop-5.0.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-5.0.8.RELEASE.jar" sourcepath="C:/file/Java/JAR/Spring/spring-framework-5.0.8.RELEASE/libs/spring-context-5.0.8.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/spring-expression-5.0.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/druid-1.1.9.jar" sourcepath="C:/file/Java/Source/druid-1.1.9-sources.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.46.jar"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-jdbc-5.0.8.RELEASE.jar" sourcepath="C:/file/Java/JAR/Spring/spring-framework-5.0.8.RELEASE/libs/spring-jdbc-5.0.8.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-5.0.8.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/lombok"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

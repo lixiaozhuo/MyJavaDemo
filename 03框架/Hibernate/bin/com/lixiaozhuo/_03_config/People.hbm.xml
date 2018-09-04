@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lixiaozhuo._03_config">
+	<import class="com.lixiaozhuo._03_config.People" rename="People2"/>
+    <class name="People" table="t_people">
+        <id name="id" column="uid">
+            <generator class="native"/>
+        </id>
+        <!-- 对象和表之间映射 -->
+        <property name="name" column="uname" length="30"/>
+        <property name="salary" column="usalary"/>
+        <property name="hiredate" column="uhiredate" type="date" />
+    </class>
+
+</hibernate-mapping>

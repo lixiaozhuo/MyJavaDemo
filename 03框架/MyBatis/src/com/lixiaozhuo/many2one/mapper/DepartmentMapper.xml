@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.many2one.mapper.DepartmentMapper">
+	<insert id="add" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO
+		t_department(name)
+		VALUE(#{name})
+	</insert>
+
+	<update id="update">
+		UPDATE t_department
+		<set>
+			<if test="username != null">
+				name=#{name},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_department
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultType="Department">
+		SELECT *
+		FROM
+		t_department
+		WHERE id=#{id}
+	</select>
+
+	<select id="list" resultType="Department">
+		SELECT *
+		FROM t_department
+	</select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 设置作用域 默认为singleton -->
+	<!-- 设置初始化和销毁函数 -->
+	<bean id="someBean" class="com.lixiaozhuo._05_scope.SomeBean"
+		init-method="init" destroy-method="destroy"  scope="prototype"></bean>
+</beans>

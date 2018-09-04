@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.many2many.mapper.TeacherMapper">
+
+	<resultMap type="Teacher" id="teacherResultMap1">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<collection property="students" ofType="Student" column="id"
+			select="com.lixiaozhuo.many2many.mapper.StudentMapper.getByTeacher">
+		</collection>
+	</resultMap>
+	
+	<resultMap type="Teacher" id="teacherResultMap2">
+		<id column="teaId" property="id" />
+		<result column="teaName" property="name" />
+		<collection property="students" ofType="Student">
+			<id column="stuId" property="id"/>
+			<result column="stuName" property="name"/>
+		</collection>
+	</resultMap>
+
+	<insert id="insertRelation">
+		INSERT
+		INTO teacher_student(stu_id,tea_id)
+		VALUE(#{sutId},#{teaId})
+	</insert>
+
+	<delete id="deleteRelation">
+		DELETE
+		FROM teacher_student
+		<where>
+			<if test="stuId!=null">
+				AND stu_id = #{stuId}
+			</if>
+			<if test="teaId!=null">
+				AND tea_id = #{teaId}
+			</if>
+		</where>
+	</delete>
+
+	<insert id="add" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO
+		t_teacher(name)
+		VALUE(#{name})
+	</insert>
+
+	<update id="update">
+		UPDATE t_teacher
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_teacher
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultMap="teacherResultMap1">
+		SELECT id,name
+		FROM
+		t_teacher
+		WHERE
+		id=#{id}
+	</select>
+
+	<select id="list" resultMap="teacherResultMap2">
+		SELECT t.id teaId,t.name teaName,s.id stuId,s.name stuName
+		FROM t_teacher t,t_student s,teacher_student ts
+		WHERE t.id = ts.tea_id AND s.id = ts.stu_id
+	</select>
+</mapper>

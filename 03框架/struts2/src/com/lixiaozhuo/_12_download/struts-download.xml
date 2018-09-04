@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="downloadPkg" namespace="/download" extends="struts-default">
+		<action name="download" class="com.lixiaozhuo._12_download.DownloadAction">
+			<result type="stream">
+				<param name="contentDisposition">attachment;fileName=${filename}</param>
+			</result>
+		</action>
+	</package>
+</struts>

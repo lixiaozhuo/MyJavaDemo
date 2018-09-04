@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="actionPkg" extends="struts-default" namespace="/action">
+		<!-- 默认class=com.opensymphony.xwork2.ActionSupport -->
+		<action name="default">
+			<result>/demo/index.jsp</result>
+		</action>
+		
+		
+		<!-- 默认method=execute -->
+		<action name="execute" class="com.lixiaozhuo._03_action_result_config.ConfigAction">
+		</action>
+		<action name="save" class="com.lixiaozhuo._03_action_result_config.ConfigAction"
+			method="save">
+			<!-- 跨package请求转发 -->
+			<result name="success" type="chain">
+				<param name="namespace">/action2</param>
+				<param name="actionName">save</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="action2Pkg" extends="struts-default" namespace="/action2">
+		<!-- 全局结果视图 -->
+		<global-results>
+			<!-- 默认name="success" -->
+			<result>/demo/success.jsp</result>
+		</global-results>
+		<action name="save" class="">
+		</action>
+	</package>
+</struts>

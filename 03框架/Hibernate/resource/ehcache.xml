@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ehcache>
+	<!-- 1，maxElementsInMemory：该缓存池放在内存中最大的缓存对象个数；
+	2，eternal：是否永久有效，如果设置为true，内存中对象永不过期；
+	3，timeToIdleSeconds：缓存对象最大空闲时间，单位：秒；
+	4，timeToLiveSeconds：缓存对象最大生存时间，单位：秒；
+	5，overflowToDisk：当内存中对象超过最大值，是否临时保存到磁盘； -->
+	
+	<!-- 针对大多数对象共同配置 -->
+	<defaultCache 
+	maxElementsInMemory="10000"
+	eternal="false"
+	timeToIdleSeconds="120" 
+	timeToLiveSeconds="120" 
+	overflowToDisk="true" />
+		
+	<!-- 针对某些对象专门的二级配置 -->
+	<cache name="hibernate.test.EmployeeCache" 
+	maxElementsInMemory="10000" 
+	eternal="false"
+	timeToIdleSeconds="2" 
+	timeToLiveSeconds="2" 
+	overflowToDisk="true" />
+</ehcache>

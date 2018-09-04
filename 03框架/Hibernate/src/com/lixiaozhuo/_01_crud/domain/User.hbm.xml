@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.lixiaozhuo._01_crud.domain.User" table="t_user">
+        <id name="id" column="uid">
+            <generator class="native"/>
+        </id>
+        <!-- 对象和表之间映射 -->
+        <property name="name" column="uname"/>
+        <property name="salary" column="usalary"/>
+        <property name="hiredate" column="uhiredate"/>
+    </class>
+
+</hibernate-mapping>

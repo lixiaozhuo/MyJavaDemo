@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	$.post("", function(data) {
+		console.log(data);
+	}); //不可跨域访问
+
+	function fn(data) {
+		console.log(data);
+	}//通过script跨域访问
+</script>
+<script type="text/javascript" src="?callback=fn">
+	
+</script>
+<script type="text/javascript">
+	$.getJSON("?callback=?", function(data) {
+		console.log(data);
+	});
+</script>
+<body>
+
+</body>
+</html>

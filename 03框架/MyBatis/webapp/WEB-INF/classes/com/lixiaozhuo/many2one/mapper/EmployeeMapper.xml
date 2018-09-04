@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.many2one.mapper.EmployeeMapper">
+
+	<resultMap type="Employee" id="employeeResultMap">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<!--
+			复杂关联关系
+			property: 代表当前resultMap的type类型的对象,里面哪个属性是复杂的关联对象
+			column: 代表把当前列的数据作为参数传到select的sql里面
+			select: 要找到执行的sql语句,通过(namespace+id)来寻找
+			javaType:查询出来的结果需要封装成什么类型
+		-->
+		<association property="dept" column="dept_id"
+			select="com.lixiaozhuo.many2one.mapper.DepartmentMapper.get" javaType="Department">
+		</association>
+	</resultMap>
+
+	<resultMap type="Employee" id="employeeResultMap2">
+		<id column="id" property="id" />
+		<result column="name" property="username" />
+		<association property="dept" javaType="Department">
+			<result column="deptName" property="name" />
+		</association>
+	</resultMap>
+
+	<insert id="add" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO
+		t_employee(username,dept_id)
+		VALUE(#{username},#{dept.id})
+	</insert>
+
+	<update id="update">
+		UPDATE t_employee
+		<set>
+			<if test="username != null">
+				username=#{username},
+			</if>
+			<if test="dept.id != null">
+				dept_id=#{dept.id},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_employee
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultMap="employeeResultMap">
+		SELECT id,username,dept_id
+		FROM
+		t_employee
+		WHERE id=#{id}
+	</select>
+
+	<select id="list" resultMap="employeeResultMap2">
+		SELECT e.id id,e.username
+		name,d.name deptName
+		FROM
+		t_employee e LEFT JOIN t_department d ON
+		e.dept_id=d.id
+	</select>
+</mapper>

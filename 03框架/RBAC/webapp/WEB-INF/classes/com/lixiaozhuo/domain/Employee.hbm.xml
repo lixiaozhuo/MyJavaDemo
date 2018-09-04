@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.lixiaozhuo.domain.Employee" table="t_employee">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<!-- 对象和表之间映射 -->
+		<property name="name" column="name" />
+		<property name="password" column="password" />
+		<property name="email" column="email" />
+		<property name="age" column="age" />
+		<property name="admin" column="admin" />
+		<many-to-one name="dept" column="dept_id"/>
+		<bag name="roles">
+			<key column="employee_id"/>
+			<many-to-many class="com.lixiaozhuo.domain.Role" column="role_id"/>
+		</bag>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<contacts> 
+  <linkman id="1"> 
+    <name>Neld</name>  
+    <email>neld@520it.com</email>  
+    <address>广州</address>  
+    <group>小码哥教育</group> 
+  </linkman>  
+  <linkman> 
+    <name>lxz</name>  
+    <email>1258290366</email>  
+    <address>aaaaa</address>  
+    <group>ddd</group> 
+  </linkman>  
+  <linkman>
+    <name>lxz</name>
+    <email>1258290366</email>
+    <address>aaaaa</address>
+    <group>ddd</group>
+  </linkman>
+</contacts>

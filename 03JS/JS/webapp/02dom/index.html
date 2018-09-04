@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+	<span id="sp" style="background-color: red">span</span>
+	<div id="div1" style="background-color: red">div1</div>
+	<div id="div2">
+		<span style="background-color: yellow">节点1</span>
+		<span style="background-color: green">节点2</span>
+		<span style="background-color: orange">节点3</span>
+		<span style="background-color: pink">节点4</span>
+	</div>
+	<input type="checkbox" name="chk" />
+	选项1
+	<input type="checkbox" name="chk" />
+	选项2
+	<input type="checkbox" name="chk" />
+	选项3
+	<hr/>
+	<input id="node" type="text" style="background-color:red" aaa="aaa"/>
+	<hr/>
+	<input type="button" onclick="moveSpanToDiv('div1')"
+		value="移动span到div1">
+	<input type="button" onclick="moveSpanToDiv('div2')"
+		value="移动span到div2">
+	<input type="button" onclick="add('div1')" value="添加span到div1">
+	<input type="button" onclick="add('div2')" value="添加span到div2">
+	<hr />
+	<select multiple="multiple" id="items" size="5">
+		<option id="item1">item1</option>
+		<option id="item2">item2</option>
+		<option id="item3">item3</option>
+		<option id="item5">item5</option>
+	</select>
+	<input type="button" onclick="insertItem('item4')" value="插入节点4"/>
+	<input type="button" onclick="deleteItem('item4')" value="删除节点4"/>
+	<input type="button" onclick="deleteItem('item5')" value="删除节点5"/>
+	<input type="button" onclick="insertItemInLast('item5')" value="在最后添加节点5"/>
+	<input type="button" onclick="replace('item4','item5')" value="节点4替换节点5"/>	
+</body>
+</html>

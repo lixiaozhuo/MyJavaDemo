@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 构造器实例化（无参数构造器），最标准，使用最多。 -->
+	<bean id="someBean" class="com.lixiaozhuo._04_bean_create.constructor.SomeBean"></bean>
+	<!-- 静态工厂方法实例化：解决系统遗留问题 -->
+	<bean id="someBean2" class="com.lixiaozhuo._04_bean_create.staticfactory.SomeBean2Factory" factory-method="getSomeBean"></bean>
+	<!--  实例工厂方法实例化：解决系统遗留问题 -->
+	<bean id="someBean3Factory" class="com.lixiaozhuo._04_bean_create.instancefactory.SomeBean3Factory"></bean>
+	<bean id="someBean3" factory-bean="someBean3Factory" factory-method="getSomeBean"></bean>
+	<!-- 实现FactoryBean接口实例化：实例工厂变种：集成其他框架使用：LocalSessionFactoryBean -->
+	<bean id="someBean4" class="com.lixiaozhuo._04_bean_create.factorybean.SomeBean4Factory" ></bean>
+</beans>

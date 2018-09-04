@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 普通属性 -->
+	<bean id="employee" class="com.lixiaozhuo._06_di.simple.Employee">
+		<!-- <property name="name" value="aaa"/>
+		<property name="age" value="18"/>
+		<property name="salary" value="1800"/>
+		<property name="url" value="http://www.baidu.com"/> -->
+		<constructor-arg name="name" value="aaa"/>
+		<constructor-arg name="age" value="18"/>
+		<constructor-arg name="salary" value="1800"/>
+		<constructor-arg name="url" value="http://www.baidu.com"/>
+	</bean>
+	<!-- 引用类型 -->
+	<bean id="someBean" class="com.lixiaozhuo._06_di.ref.SomeBean">
+		<property name="otherBean" ref="otherBean"/>
+	</bean>
+	<bean id="otherBean" class="com.lixiaozhuo._06_di.ref.OtherBean">
+	</bean>
+	<!-- 集合类型 -->
+	<bean id="collection" class="com.lixiaozhuo._06_di.collection.CollectionBean">
+		<property name="set">
+			<set>
+				<value>set1</value>
+				<value>set2</value>
+			</set>
+		</property>
+		<property name="list">
+			<list>
+				<value>list1</value>
+				<value>list2</value>
+			</list>
+		</property>
+		<property name="array">
+			<array>
+				<value>array1</value>
+				<value>array2</value>
+			</array>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="map1" value="map1"></entry>
+				<entry key="map2" value="map2"></entry>
+			</map>
+		</property>
+		<property name="prop">
+			<value>
+				prop1=prop1;
+				prop2=prop2;
+			</value>
+			<!-- <props>
+				<prop key="prop1">prop2</prop>
+				<prop key="prop2">prop2</prop>
+			</props> -->
+		</property>
+	</bean>
+</beans>

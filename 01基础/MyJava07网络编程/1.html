@@ -1,0 +1,610 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unipus高校外语教学平台</title>
+<link href="/hpbase/css/fashionfoucs_lrtk.css" rel="stylesheet" />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?8a1d0cf914523c7ed112dbd25e018957";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script src="/template/SDloginform.js" language="JavaScript" type="text/javascript"></script>
+<script src="/hpbase/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+<script>
+/*
+var $j = jQuery.noConflict();
+$j(document).ready(function($){
+
+
+}); // end of jQuery(document).ready(function($){
+*/
+</script>
+
+<script src="/hpbase/js/jquery.plugin.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/hpbase/js/iepngfix_tilebg.js"></script>
+<!--fix ie6 png-->
+<style type="text/css">
+  img, div, input { behavior: url("/hpbase/iepngfix.htc") }
+</style>
+
+<script src="/js/layer-v1.9.3/layer.js"></script>
+
+<script language="javascript">
+
+// JavaScript Document
+
+/*
+   name - name of the cookie
+   value - value of the cookie
+   [expires] - expiration date of the cookie
+     (defaults to end of current session)
+   [path] - path for which the cookie is valid
+     (defaults to path of calling document)
+   [domain] - domain for which the cookie is valid
+     (defaults to domain of calling document)
+   [secure] - Boolean value indicating if the cookie transmission requires
+     a secure transmission
+   * an argument defaults when it is assigned null as a placeholder
+   * a null placeholder is not required for trailing omitted arguments
+*/
+
+function setCookie(name, value, expires, path, domain, secure) {
+  var curCookie = name + "=" + escape(value) +
+      ((expires) ? "; expires=" + expires.toGMTString() : "") +
+      ((path) ? "; path=" + path : "") +
+      ((domain) ? "; domain=" + domain : "") +
+      ((secure) ? "; secure" : "");
+  document.cookie = curCookie;
+}
+
+
+/*
+  name - name of the desired cookie
+  return string containing value of specified cookie or null
+  if cookie does not exist
+*/
+
+function getCookie(name) {
+  var dc = document.cookie;
+  var prefix = name + "=";
+  var begin = dc.indexOf("; " + prefix);
+  if (begin == -1) {
+    begin = dc.indexOf(prefix);
+    if (begin != 0) return null;
+  } else
+    begin += 2;
+  var end = document.cookie.indexOf(";", begin);
+  if (end == -1)
+    end = dc.length;
+  return unescape(dc.substring(begin + prefix.length, end));
+}
+
+
+/*
+   name - name of the cookie
+   [path] - path of the cookie (must be same as path used to create cookie)
+   [domain] - domain of the cookie (must be same as domain used to
+     create cookie)
+   path and domain default if assigned null or omitted if no explicit
+     argument proceeds
+*/
+
+function deleteCookie(name, path, domain) {
+  if (getCookie(name)) {
+    document.cookie = name + "=" +
+    ((path) ? "; path=" + path : "") +
+    ((domain) ? "; domain=" + domain : "") +
+    "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+  }
+}
+
+// date - any instance of the Date object
+// * hand all instances of the Date object to this function for "repairs"
+
+function fixDate(date) {
+  var base = new Date(0);
+  var skew = base.getTime();
+  if (skew > 0)
+    date.setTime(date.getTime() - skew);
+}
+
+
+var disableSubmit=false;
+
+function EnableAgain() {
+	Counter--;
+	if (Counter>0) {
+		setTimeout("EnableAgain()", 1000);			 
+		if ($("#djmessage")) {
+			$("#djmessage").html("To prevent possible spam, please wait " + Counter + " seconds!"); 
+			document.LoginForm.password.value='';
+		}
+		disableSubmit = true;
+	} else {
+		if ($("#djmessage")) {
+			$("#djmessage").html("&nbsp;"); 
+		}
+		setCookie("NHCELoginCounter", 0, now);
+		disableSubmit = false;
+	}
+}
+
+
+function openCreateForm() {
+	// var w = 480, h = 340;
+	// if (document.all || document.layers) {
+	   w = screen.availWidth;
+	   h = screen.availHeight;
+	// }
+	// var popW = 450, popH = 442;
+	var popW = 650, popH = 680;
+	var leftPos = (w-popW)/2, topPos = (h-popH)/2-30;
+	 
+	myWinFront = window.open('/login/selfregister.php','RegisterForm','width=' + popW + ',height=' + popH + ',top=' + topPos + ',left=' + leftPos);
+	if (myWinFront.closed) {
+  	} else {
+		if (!myWinFront.opener) WinId.opener = self;
+		myWinFront.focus();
+	}
+
+}
+
+var windowPoppedUp = false;
+var popup_window = false;
+
+function closePopUp() {
+	if (windowPoppedUp == true) {
+		if (popup_window) {
+			popup_window.close();
+		}
+	}
+}
+
+
+</script>
+
+
+
+
+</head>
+<body class="newcontent_2" onload="img.src='/images/loading.gif'";>
+   
+<div class="wrapper2" style="background-color:#eaeeef;">
+    	<!--banner start-->
+		   
+   
+		<div class="banner2">
+        <div class="banner2_word" style="background: url(/hpbase/images/unipus_blogo.jpg) no-repeat;">
+            <div style="float:left; margin-left:210px; margin-top:35px;"><img src="/hpbase/images/third_logo2.jpg" width="248" height="77" style="display:none;" /></div>
+
+
+		   	   
+	    </div>
+        </div>
+       
+        
+		<!--banner end-->
+    </div>
+    <div class="clear"></div>
+    <!--主体开始-->
+    	
+        	<div style="background-color:#9b8671;">
+          
+    			<div class="newlogin_box">
+                 <!--轮播开始-->
+       					 <!-- 代码 开始 -->
+    <div id="banner">
+        <ul id="banner_img">
+            <li class="item1">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2><img src="/hpbase/images/banner_013.png" width="296" height="44" /> </h2>
+                        <p style="margin-top:-15px;">
+                        <img src="/hpbase/images/banner_014.png" width="296" height="39" /> </p>
+                       
+                    </div>
+                    <div class="ad_img">
+                        <img style="position:absolute; right:322px; bottom:183px;" src="/hpbase/images/banner_04.png" width="394" height="284"  />
+                    </div>
+                </div>
+            </li>
+            
+            
+            
+            
+            <li class="item2">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2><img src="/hpbase/images/banner_015.png" width="308" height="36" /> </h2>
+                        <p style="margin-top:-15px;">
+                        <img src="/hpbase/images/banner_016.png" width="308" height="37" /> </p>
+                    </div>
+                    
+                </div>
+            </li>
+            
+            
+            
+            
+            
+             <li class="item3">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2><img src="/hpbase/images/banner_011.png" width="257" height="38" /> </h2>
+                        <p style="margin-top:-15px;">
+                        <img src="/hpbase/images/banner_012.png" width="257" height="40" /> </p>
+                       
+                    </div>
+                    <div class="ad_img">
+                        <img style="position:absolute; right:270px; bottom:183px;" src="/hpbase/images/banner_02.png" width="395" height="291"  />
+                    </div>
+                </div>
+            </li>
+            
+            
+            
+            
+            <li class="item4">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2><img src="/hpbase/images/banner_017.png" width="221" height="38" /> </h2>
+                        <p style="margin-top:-15px;">
+                        <img src="/hpbase/images/banner_018.png" width="221" height="30" /> </p>
+                    </div>
+                    
+                </div>
+            </li>
+     
+        </ul>
+        <div id="banner_ctr">
+            <div id="drag_ctr"></div>
+            <ul>
+                <!--<li class="first-item">网站建设</li>-->
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+               <!-- <li class="last-item">网站设计</li>-->
+            </ul>
+            <div id="drag_arrow"></div>
+        </div>
+    </div>
+	 
+    <script type="text/javascript" src="/hpbase/js/fashionfoucs.js"></script>
+ 
+    <!-- 代码 结束 -->
+<!--轮播结束-->
+         
+         <div class="newlogin_boxnew" style="z-index:9999;">        
+        <div class="rightlogin_tip"></div>
+
+
+
+        <!--登录框 start-->
+        	<div class="rightlogin_box">
+            <p style="height:30px;"></p>
+            <p id="djmessage" style="height:20px; width:200px; margin:0 auto; font-size:13px; display:block;"></p>
+ 
+    	<form id="LoginForm" name="LoginForm" action="/index.php" method="post"  style="margin-bottom:5px;">
+       	    <table class="newlogintable_third" width="200"  border="0" cellspacing="0" cellpadding="0">
+  
+                  <tr>
+                    <td>用户名：</td>
+                    <td>
+				    <input id="username" class="newlogintable_third_words" name="username" type="text"  
+					value="" />
+					</td>
+                  </tr>
+                  <tr>
+                    <td>密&nbsp;&nbsp;&nbsp;码：</td>
+                    <td>
+					<input class="newlogintable_third_words" id="password" autocomplete="off" name="password" type="password"  />
+							</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td align="right">
+					<input class="newlogintable_third_button"  name="Input2" type="submit" value="登 录" onClick="return checkSDlogin()" />
+
+				</td>
+                  </tr>
+               
+                </table>
+ 	</form>
+
+                 <!--弹出开始-->
+				<script src='/hpbase/js/TTPopups.js'></script>	
+				<script>
+                window.onload=function(){
+                    function testFn(){
+                        //alert('关了')
+                    }
+                    var o=document.getElementById('TTPopups');
+                    var oBtn=document.getElementById('btn');
+                    if (oBtn) {
+						oBtn.onclick=function(){
+							var test=new TTPopups({
+								title:'title自定义',//title
+								content:o,	//请传入ID，或DOM对象
+								width:600,			
+								height:350,			//弹出层大小
+								closeCallBack:testFn,	//关闭执行的回调函数
+								isAutoShow:false	//自动显示
+							});
+						}
+					}	
+                }
+                </script>
+                <div id='TTPopups' style='display:none;'>
+                    <div style="padding:10px;">
+										</div>
+                </div>
+                <!--弹出结束-->
+
+                <!-- 
+				<p style="line-height:38px; margin:0 auto; width:200px; text-align:right;"><a style="color:#a10000; margin-right:5px;" href="#">注册为学生用户</a>
+                <a style="color:#006699; margin-right:5px;" id='btn' href="#" >忘记密码</a><a class="third_tablecolor"  href="#">登录指南</a></p>
+				-->
+
+
+<p style="line-height:38px; margin:0 auto; width:200px; text-align:right;">
+<!-- <a style="color:#006699; margin-right:5px;" id='btn' href="#" onClick="openPasswordForm(); return false;" >忘记密码</a>-->
+<!-- <a class="third_tablecolor"  href="#">登录指南</a>
+-->
+</p>
+
+
+
+                
+                <div align="center" class="third_rightwords" style="display:; padding-top:12px;">
+
+	
+				
+													    </div>
+                <p style=" display:none; width:200px; margin:0 auto;text-align:right;"><a style="color:#935f2c;" href="#">MORE</a></p>
+
+            </div>
+        <!--登录框 end-->
+ 
+ 
+ 
+                </div>
+             </div>   
+                
+
+                <div class="newlogin" style="display:none;">
+                	<ul>
+                    	<li>
+                        	<a href="#"><p class="newlogin_test1">数字课程</p>
+                            <p class="newlogin_test2">Online Courses</p></a>
+                        </li>
+                        <li>
+                        	<a href="#"><p class="newlogin_test1">资源中心</p>
+                            <p class="newlogin_test2"> iResource</p></a>
+                        </li>
+                        <li>
+                        	<a href="#"><p class="newlogin_test1">测试中心</p>
+                            <p class="newlogin_test2"> Test to Win</p></a>
+                        </li>
+                        <li>
+                        	<a href="#"><p class="newlogin_test1">院校交流</p>
+                            <p class="newlogin_test2">Communicating</p></a>
+                        </li>
+                        <li>
+                        	<a href="#"><p class="newlogin_test1">赛事活动</p>
+                            <p class="newlogin_test2">Events </p></a>
+                        </li>
+                        <li>
+                        	<a href="#"><p class="newlogin_test1">移动学习</p>
+                            <p class="newlogin_test2"> M-Learning</p></a>
+                        </li>
+                        <li>
+                        	<a href="#"><p class="newlogin_test1">互动社区</p>
+                            <p class="newlogin_test2">Community </p></a>
+                        </li>
+                    </ul>
+             
+    
+      </div>
+      </div>
+    <!--主体结束-->
+<div class="clear"></div>
+    <!--footer start-->
+ 
+ 
+<script language="javascript">
+if (document.getElementById('username')) {
+	document.getElementById('username').focus();
+}
+</script>
+
+
+<script language="javascript">
+
+ 
+
+function openPasswordForm() {
+	// var w = 480, h = 340;
+	if (document.all || document.layers) {
+	   w = screen.availWidth;
+	   h = screen.availHeight;
+	}
+	var popW = 460, popH = 400;
+	var leftPos = (w-popW)/2, topPos = (h-popH)/2;
+	myWinFront = window.open('/login/password.php','PasswordForm','width=' + popW + ',height=' + popH + ',top=' + topPos + ',left=' + leftPos);
+	if (myWinFront.closed) {
+  	} else {
+		if (!myWinFront.opener) WinId.opener = self;
+		myWinFront.focus();
+	}
+
+}
+
+
+function openHelpForm() {
+	// var w = 480, h = 340;
+	if (document.all || document.layers) {
+	   w = screen.availWidth;
+	   h = screen.availHeight;
+	}
+	var popW = 460, popH = 420;
+	var leftPos = (w-popW)/2, topPos = (h-popH)/2 - 50;
+	myWinFront = window.open('/help/quickstart.php','PasswordForm','width=' + popW + ',height=' + popH + ',top=' + topPos + ',left=' + leftPos);
+	if (myWinFront.closed) {
+  	} else {
+		if (!myWinFront.opener) WinId.opener = self;
+		myWinFront.focus();
+	}
+
+}
+
+
+var teacherOK = false ;
+
+function checkTeacher() {
+	var postData = {};
+	loadUrl = '/template/SDloginajax.php';
+	dataType = 'json';
+	
+	postData['whichAction']='updateAuthTeacher';
+	postData['sno']=$("#username").val();
+	postData['password']=$("#password").val();
+	
+	$.ajax({
+	  type: 'POST',
+	  url: loadUrl,
+	  data: postData,
+	  success: function (data) {
+		 	  //  alert(data);
+			teacherOK = true;
+		},
+	  // error : error,
+	  // complete : complete,
+	  dataType: dataType
+	});
+
+} 
+
+
+
+function checkSDlogin() {
+
+
+$("#username").val($("#username").val().replace(/\s+/g,''));
+$("#username").val($("#username").val().replace(/(<([^>]+)>)/ig,""));
+$("#password").val($("#password").val().replace(/(<([^>]+)>)/ig,""));
+ 
+  if ($("#djmessage")) {
+  		// $("djmessage").innerHTML="<img src=\"/images/loading.gif\" border=\"0\" align=\"absmiddle\"> Contacting server ...";
+   		$("#djmessage").html('<img src="/images/loading.gif" align="absmiddle" /> Contacting server ... ');
+  }
+ 
+ 
+ 		// we don't care. always return true;
+	//  alert(visits + "=" + Counter);
+		 
+		
+} // end of checkSDlogin
+
+
+</script>
+
+
+
+
+<div id="schoolPopNews" style="display:none;">
+
+</div>
+
+<style type="text/css">
+  body .layui-layer-title { background-color: #E77111; color: #fff;}
+</style>
+<script language="JavaScript">
+var FoundNews = false;
+
+function showNewsLayer() {
+  var content = $('#schoolPopNews').html();
+  var X = $('.newlogin_boxnew').offset().top + 5;
+  var Y = $('.newlogin_boxnew').offset().left+100;
+  layer.open({
+    type: 1,
+    title: '学校通知',
+    area: ['480px', '320px'],
+    offset: [X +'px', Y + 'px'],
+    shade: false,
+    shadeClose: true, //点击遮罩关闭
+    content: '\<\div style="padding:12px;overflow:hidden;">'+content+'\<\/div>'
+  });
+}
+
+$(function() {
+ // FoundNews = true;
+  if(FoundNews) {
+    showNewsLayer();
+  }
+});
+ 
+</script>
+
+
+
+
+
+
+<!--主体结束-->
+<style type="text/css">
+.footerTable a {color:gray; font-size:13px; line-height:150%; }
+.footerTable a:hover {color:black; text-decoration:underline; }
+.youqing {color:#6a6a6a;}
+
+
+</style>
+
+<div class="clear"></div>
+    <!--footer start-->
+    	<div class="footer" style="margin-top:0px;">
+        	<div class="footerword" >
+ 
+
+            	<table class="footerTable" height="80" style="margin-top:25px;" width="100%"   border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+
+                    <td width="52%" valign="top">
+                    		<p><span style="color: #B09880; font-weight: bold">了解更多支持和服务敬请登录：</span>&nbsp;<a href="http://www.unipus.cn" target="_blank">www.unipus.cn </a><br/><a href="http://www.unipus.cn/index-course.html" target="_blank">数字课程</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://itest.fltrp.com" target="_blank">测评工具</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://iresearch.unipus.cn" target="_blank">科研支持</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://heep.unipus.cn" target="_blank">教学资讯</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://teacher.unipus.cn" target="_blank">研修信息</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.unipus.cn" target="_blank">赛事活动</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://unicomm.unipus.cn" target="_blank">合作共建</a><br/><span style="color: #B09880;  font-weight: bold">友情链接：</span><a href="http://www.fltrp.com" target="_blank">外语教学与研究出版社</a> </p>
+                    </td>
+                    
+
+                    <td width="10%" style="background:url(/hpbase/images/logo_footer.jpg) no-repeat 45px 20px;">&nbsp;</td>
+                    <td width="38%" valign="top" >
+<p style="font-size:13px;">版权所有 2001-2018  外语教学与研究出版社 </p>
+
+<p>	<a href="http://www.miibeian.gov.cn" target="_blank" style="text-decoration:none;">京ICP备11010362号-34</a> 
+
+
+  
+              <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802020459" style="text-decoration:none;"><img src="/hpbase/images/gonganbeiantubiao.png" />京公网安备 11010802020459号</a>
+  <br />
+  <span style="font-size:13px;">
+ 20150331.20160507版</span>
+                  
+  </p> 
+  
+                     </td>
+                  </tr>
+                </table>
+ 
+            </div>
+        </div>
+    <!--footer end-->
+
+ 
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<bean id="emplDAO" class="com.lixiaozhuo.aop_common.dao.impl.EmployeeDAOImpl"></bean>
+	<bean id="emplServie"
+		class="com.lixiaozhuo.aop_common.service.impl.EmployeeServiceImpl">
+		<property name="emplDAO" ref="emplDAO"></property>
+	</bean>
+	<!-- 自定义的事务管理器 WHAT-->
+	<bean id="txManager" class="com.lixiaozhuo.aop_common.TransactionManager"></bean>
+	<!--配置AOP中的WHERE+WHEN -->
+	<aop:config>
+		<!-- 配置在什么地方切入WHERE-->
+		<aop:pointcut expression="execution(* com.lixiaozhuo.aop_common.service.*Service.*(..))" id="txPointcut"/>
+		<!-- 切面 -->
+		<aop:aspect ref="txManager">
+			<!-- 在什么时机切WHEN -->
+			<!-- <aop:before method="begin" pointcut-ref="txPointcut"/>
+			<aop:after-returning method="commit" pointcut-ref="txPointcut"/>
+			<aop:after-throwing method="rollback" pointcut-ref="txPointcut" throwing="e"/>
+			<aop:after method="close" pointcut-ref="txPointcut"/> -->
+			<aop:around method="around" pointcut-ref="txPointcut"/>
+		</aop:aspect>
+	</aop:config> 
+</beans>

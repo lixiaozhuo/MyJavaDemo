@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="createPkg" extends="struts-default" namespace="/create">
+		<action name="create1" class="com.lixiaozhuo._04_create_action.Type1Action" method="execute">
+			<result name="success">/demo/success.jsp</result>
+		</action>
+		<action name="create2" class="com.lixiaozhuo._04_create_action.Type2Action">
+			<result>/demo/success.jsp</result>
+		</action>
+		<action name="create3" class="com.lixiaozhuo._04_create_action.Type3Action">
+			<result>/demo/success.jsp</result>
+		</action>
+	</package>
+</struts>

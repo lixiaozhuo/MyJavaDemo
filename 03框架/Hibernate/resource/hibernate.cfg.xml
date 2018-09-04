@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>		
+		<!-- 关联映射文件 -->
+		<mapping resource="com/lixiaozhuo/_13_query/domain/query.hbm.xml"/>
+		
+		<!-- 设置把哪些对象放入二级缓存 -->
+		<class-cache usage="read-only" class="com.lixiaozhuo._13_query.domain.Employee" region="EmployeeCache"/>
+	</session-factory>
+</hibernate-configuration>

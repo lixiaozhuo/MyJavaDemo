@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.container{width: 960px;min-height: 650px;margin-right: auto;margin-left: auto;}
+.h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
+  font-size: 50%;
+}
+.footer{width: 960px;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;}
+.copy-right{color: #999;font:12px/1.6 arial,helvetica,sans-serif;}
+.randomCode{width: 100px;height: 40px;margin-top: 10px;}
+.navbar {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+.noborder{border: 0px;}
+.mg-b10{margin-bottom: 10px;}
+.mg-b20{margin-bottom: 20px;}
+.mg-b30{margin-bottom: 30px;}
+.mg-b40{margin-bottom: 40px;}
+.mg-b50{margin-bottom: 50px;}

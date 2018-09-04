@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 导入数据库配置文件 -->
+	<properties resource="db.properties" />
+	<settings>
+		<!-- 全局启用或禁用延迟加载。当禁用时,所有关联对象都会即时加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 当启用时, 有延迟加载属性的对象在被调用时将会完全加载任意属性。否则, 每种属性将会按需要加载。 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+		<!-- Object对象上面的哪些方法触发延迟加载。默认值equals,clone,hashCode,toString -->
+		<!-- <setting name="lazyLoadTriggerMethods" value="clone" /> -->
+	</settings>
+	<!-- 自定义别名 -->
+	<!-- <typeAliases>
+		<typeAlias type="com.lixiaozhuo.single.domain.User" alias="User"/>
+		</typeAliases> -->
+	<!-- 扫描别名注解 -->
+	<typeAliases>
+		<package name="com.lixiaozhuo.single.domain" />
+		<!-- <package name="com.lixiaozhuo.many2one.domain" /> -->
+		<package name="com.lixiaozhuo.one2many.domain" />
+		<package name="com.lixiaozhuo.many2many.domain" />
+	</typeAliases>
+
+
+	<!-- 数据库使用环境 -->
+	<environments default="default">
+		<!-- 数据环境配置 -->
+		<environment id="default">
+			<!-- 事务管理器:使用JDBC事务管理器
+				别名:JDBC
+				全限定名:
+			-->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接池
+				别名:POOLED
+				全限定名 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 映射资源路径 -->
+	<mappers>
+		<mapper resource="com/lixiaozhuo/many2one/mapper/DepartmentMapper.xml" />
+		<mapper resource="com/lixiaozhuo/many2one/mapper/EmployeeMapper.xml" />
+		<mapper resource="com/lixiaozhuo/one2many/mapper/DepartmentMapper.xml" />
+		<mapper resource="com/lixiaozhuo/one2many/mapper/EmployeeMapper.xml" />
+		<mapper resource="com/lixiaozhuo/many2many/mapper/TeacherMapper.xml" />
+		<mapper resource="com/lixiaozhuo/many2many/mapper/StudentMapper.xml" />
+		<mapper resource="com/lixiaozhuo/single/mapper/UserMapper.xml" />
+	</mappers>
+
+
+
+</configuration>
+

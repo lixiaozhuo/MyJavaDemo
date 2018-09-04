@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lixiaozhuo._07_many2one">
+	<class name="Department" table="t_department">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" />
+	</class>
+	<class name="Employee" table="t_elployee">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" />
+		<many-to-one name="dept" column="dept_id" />
+	</class>
+</hibernate-mapping>

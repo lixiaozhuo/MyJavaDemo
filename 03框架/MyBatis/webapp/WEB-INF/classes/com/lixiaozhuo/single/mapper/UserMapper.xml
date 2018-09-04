@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.single.mapper.UserMapper">
+	<!-- 缓存 -->
+	<!-- <cache/> -->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+	<!-- 配置结果集和对象的映射 -->
+	<resultMap type="User" id="userResultMap">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="age" property="age" />
+	</resultMap>
+
+	<!--
+		useGeneratedKeys:使用数据库自增的值作为主键的值的策略
+		keyColumn:在数据表中哪一列的值为主键的值
+		keyProperty:主键的值设置到对应类的哪个属性
+	-->
+	<insert id="add" parameterType="User" useGeneratedKeys="true"
+		keyColumn="id" keyProperty="id">
+		INSERT INTO
+		t_user(username,password,age)
+		VALUE(#{username},#{password},#{age})
+	</insert>
+
+	<update id="update">
+		UPDATE t_user
+		<!--
+			set标签会判断里面是否有内容,如果有则在前面加上set
+			自动判断末尾是否以逗号结尾,是的话自动去掉
+		-->
+		<set>
+			<if test="username != null">
+				username=#{username},
+			</if>
+			<if test="password != null">
+				password=#{password},
+			</if>
+			<if test="age != null">
+				age=#{age},
+			</if>
+		</set>
+		<!-- 模拟set标签 -->
+		<!-- <trim prefix="SET" suffixOverrides=",">
+			<if test="username != null">
+			username=#{username},
+			</if>
+			<if test="password != null">
+			password=#{password},
+			</if>
+			<if test="age != null">
+			age=#{age},
+			</if>
+			</trim> -->
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_user
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultMap="userResultMap">
+		SELECT id, username,password,age
+		FROM
+		t_user
+		WHERE id=#{id}
+	</select>
+
+	<select id="list" resultType="User">
+		SELECT *
+		FROM t_user
+	</select>
+
+	<select id="queryByCondition" resultType="User">
+		SELECT *
+		FROM t_user
+		<!--
+			where标签会判断里面是否有内容,有的话就在前面加上where
+			回去判断内容前面是否含有and或者or,有的话帮你去掉
+		-->
+		<where>
+			<if test="keyword!=null">
+				AND username LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="beginAge!=null">
+				AND age >= #{beginAge}
+			</if>
+			<if test="endAge!=null">
+				AND age &lt;= #{endAge}
+			</if>
+		</where>
+		<!-- 模拟where标签 -->
+		<!-- <trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="keyword!=null">
+			AND username LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="beginAge!=null">
+			AND age >= #{beginAge}
+			</if>
+			<if test="endAge!=null">
+			AND age &lt;= #{endAge}
+			</if>
+			</trim> -->
+	</select>
+
+	<select id="queryByAge" resultType="User">
+		SELECT *
+		FROM t_user
+		<where>
+			age in
+			<!-- collection:传进来的对象所属类型的别名 -->
+			<foreach collection="list" open="(" close=")" item="age"
+				index="index" separator=",">
+				#{age}
+			</foreach>
+		</where>
+	</select>
+
+
+	<sql id="query">
+		FROM t_user
+		<where>
+			<if test="keyword!=null">
+				AND username LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="beginAge!=null">
+				AND age >= #{beginAge}
+			</if>
+			<if test="endAge!=null">
+				AND age &lt;= #{endAge}
+			</if>
+		</where>
+
+	</sql>
+	<select id="query" resultType="User">
+		SELECT *
+		<include refid="query"></include>
+		LIMIT #{startPage},#{pageSize}
+	</select>
+
+	<select id="queryCount" resultType="Long">
+		SELECT COUNT(*)
+		<include refid="query"></include>
+	</select>
+	
+	<select id="getUserByUsernameAndPassword" resultType="User">
+		SELECT * FROM t_user WHERE username=#{username} AND password=#{password}
+	</select>
+</mapper>

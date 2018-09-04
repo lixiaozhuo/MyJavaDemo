@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="uploadPkg" namespace="/upload" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<!-- 设置上传相关参数 -->
+				<interceptor-ref name="fileUpload">
+					<!-- 设置单个文件上传大小 -->
+					<param name="maximumSize">1024</param>
+					<!-- 设置上传限制类型 -->
+					<!-- <param name="allowedTypesSet"></param> -->
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<action name="upload" class="com.lixiaozhuo._11_upload.UploadAction">
+			<interceptor-ref name="myStack"/>
+			<result name="input">/upload.jsp</result>
+		</action>
+	</package>
+</struts>

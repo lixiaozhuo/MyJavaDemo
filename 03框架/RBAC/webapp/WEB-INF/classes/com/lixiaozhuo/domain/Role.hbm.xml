@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.lixiaozhuo.domain.Role" table="t_role">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<!-- 对象和表之间映射 -->
+		<property name="name" column="name" />
+		<property name="sn" column="sn" />
+		<bag name="permissions">
+			<key column="role_id" />
+			<many-to-many class="com.lixiaozhuo.domain.Permission"
+				column="permission_id" />
+		</bag>
+	</class>
+
+</hibernate-mapping>

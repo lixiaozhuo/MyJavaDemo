@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.many2many.mapper.StudentMapper">
+	<insert id="add" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO
+		t_student(name)
+		VALUE(#{name})
+	</insert>
+
+	
+
+	<update id="update">
+		UPDATE t_student
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_student
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultType="Student">
+		SELECT *
+		FROM
+		t_student
+		WHERE id=#{id}
+	</select>
+	
+	<select id="getByTeacher" resultType="Student">
+		SELECT id,name
+		FROM 
+		t_student ,teacher_student
+		WHERE tea_id = #{teaId} AND stu_id = id
+	</select>
+
+	<select id="list" resultType="Student">
+		SELECT *
+		FROM t_student
+	</select>
+</mapper>

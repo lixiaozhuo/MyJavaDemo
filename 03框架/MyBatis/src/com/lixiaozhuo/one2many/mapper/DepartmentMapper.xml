@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.one2many.mapper.DepartmentMapper">
+	<resultMap type="Department" id="departmentResultMap1">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<collection property="emps" ofType="Employee" column="id"
+			select="com.lixiaozhuo.one2many.mapper.EmployeeMapper.getByDept">
+		</collection>
+	</resultMap>
+	<!-- 左连接解决n+1问题 -->
+	<resultMap type="Department" id="departmentResultMap2">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<collection property="emps" ofType="Employee">
+			<id property="id" column="empId" />
+			<result property="username" column="username" />
+		</collection>
+	</resultMap>
+
+	<insert id="add" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO
+		t_department(name)
+		VALUE(#{name})
+	</insert>
+
+	<update id="updateRelation">
+		UPDATE t_employee
+		SET dept_id = #{deptId}
+		WHERE
+		id=#{empId}
+	</update>
+
+	<update id="update">
+		UPDATE t_department
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_department
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultMap="departmentResultMap1">
+		SELECT id,name
+		FROM t_department
+		WHERE
+		id=#{id}
+	</select>
+
+	<select id="list" resultMap="departmentResultMap2">
+		SELECT d.id id,d.name name,e.id
+		empId,e.username username
+		FROM t_department d LEFT JOIN t_employee e ON
+		d.id = e.dept_id
+	</select>
+</mapper>

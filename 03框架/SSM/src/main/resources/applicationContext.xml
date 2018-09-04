@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 1.读取外部的数据库配置文件 -->
+	<context:property-placeholder location="classpath:db.properties"
+		system-properties-mode="NEVER" />
+	<!-- 2.配置数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<!-- 3.配置SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 3.1配置数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 引入mybatis配置文件 -->
+		<property name="configLocation" value="classpath:mybatis.cfg.xml"/>
+		<!-- 设置扫描别名的包 -->
+		<property name="typeAliasesPackage" value="com.lixiaozhuo.domain"/>
+		<!-- 设置mapper映射文件路径 -->		
+		<property name="mapperLocations" value="classpath:com/lixiaozhuo/mapper/*Mapper.xml"/>
+	</bean>
+	<!-- 4.配置事务 -->
+	<!-- 4.1配置事务管理器what -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 4.2配置事务模板when -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="checkLogin" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 4.3AOP配置 where和when -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.lixiaozhuo.service.*.*(..))"
+			id="txPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+
+	<!-- 开启注解扫描 -->
+	<context:component-scan base-package="com.lixiaozhuo"/>
+	<!-- 设置扫描Mapper接口的包 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.lixiaozhuo.mapper"/>
+	</bean>
+	<!-- <import resource="classpath:applicationContext-mappers.xml" />
+	<import resource="classpath:applicationContext-services.xml" />
+	<import resource="classpath:applicationContext-actions.xml" /> -->
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true" />
+
+	<!-- 配置页面标签主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+
+
+	<package name="pkg" namespace="/" extends="struts-default">
+		<action name="getServerTime"
+			class="com.liixiaozhuo.ajax._01_server_time.GetServerTimeAction" />
+		<action name="checkUsername"
+			class="com.liixiaozhuo.ajax._02_check_username.CheckUsername" />
+		<action name="login" class="com.liixiaozhuo.ajax._03_login.Login" />
+		<action name="checkUsername2"
+			class="com.liixiaozhuo.jQuery._01_check_username.CheckUsername" />
+		<action name="login2" class="com.liixiaozhuo.jQuery._02_login.Login" />
+		
+		<action name="linkage_*"
+			class="com.liixiaozhuo.ajax._04_linkage.LinkageByHtmlAction" method="{1}">
+			<allowed-methods>getCityById</allowed-methods>
+		</action>
+		<action name="linkageXml_*"
+			class="com.liixiaozhuo.ajax._04_linkage.LinkageByXmlAction" method="{1}">
+			<allowed-methods>getCityById</allowed-methods>
+		</action>
+		<action name="linkageJson_*"
+			class="com.liixiaozhuo.ajax._04_linkage.LinkageByJsonAction" method="{1}">
+			<allowed-methods>getCityById</allowed-methods>
+		</action>
+		<action name="main">
+			<result>/ajax/login/main.html</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lixiaozhuo._12_extends">
+	<class name="User" table="t_user" discriminator-value="1">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<!-- 鉴别器 -->
+		<discriminator column="type" type="int"/>
+		<property name="name" column="name"/>
+		<!-- 子类 -->
+		<subclass name="Employee" discriminator-value="2">
+			<property name="salary" column="salary"/>
+		</subclass>
+		<!-- 子类 -->
+		<subclass name="Customer" discriminator-value="3">
+			<property name="address" column="address"/>
+		</subclass>
+	</class>
+</hibernate-mapping>

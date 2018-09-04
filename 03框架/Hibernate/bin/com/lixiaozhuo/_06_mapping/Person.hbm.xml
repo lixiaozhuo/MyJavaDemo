@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lixiaozhuo._06_mapping">
+	<class name="Person" table="t_person">
+		<id name="id" column="uid">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<!-- set集合 -->
+		<set name="emailSet" table="t_set">
+			<!-- 设置外界列名 -->
+			<key column="email_id" />
+			<!-- 设置新增的列名 -->
+			<element column="address" type="string" />
+		</set>
+		<!-- list集合 -->
+		<list name="emailList" table="t_list">
+			<!-- 设置外界列名 -->
+			<key column="email_id" />
+			<index column="idx"/>
+			<!-- 设置新增的列名 -->
+			<element column="address" type="string" />
+		</list>
+		<!-- bag集合 -->
+		<bag name="emailBag" table="t_bag">
+			<!-- 设置外界列名 -->
+			<key column="email_id" />
+			<!-- 设置新增的列名 -->
+			<element column="address" type="string" />
+		</bag>
+	</class>
+
+</hibernate-mapping>

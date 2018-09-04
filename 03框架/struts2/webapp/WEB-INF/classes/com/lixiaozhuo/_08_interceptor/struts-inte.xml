@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="interceptorPkg" namespace="/inte" extends="struts-default">
+		<!-- 注册拦截器 -->
+		<interceptors>
+			<interceptor name="checkLogon"
+				class="com.lixiaozhuo._08_interceptor.CheckLogonInterceptor" />
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="checkLogon" >
+					<param name="view">USER_IN_SESSION</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 全局引入拦截器 -->
+		<default-interceptor-ref name="myStack" />
+		
+		<action name="logon" class="com.lixiaozhuo._08_interceptor.LogonAction">
+			<!-- 特定action引入拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result type="redirectAction">main</result>
+			<result name="input" type="redirect">/logon.jsp</result>
+		</action>
+		<action name="main">
+			<result>/system/main.jsp</result>
+			<result name="input" type="redirect">/logon.jsp</result>
+		</action>
+	</package>
+</struts>

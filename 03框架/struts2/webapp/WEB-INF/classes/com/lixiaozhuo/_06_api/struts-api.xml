@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="apiPkg" extends="struts-default" namespace="/api">
+		<action name="type1" class="com.lixiaozhuo._06_api.Type1Action"></action>
+		<action name="type2" class="com.lixiaozhuo._06_api.Type2Action"></action>
+		<action name="type3" class="com.lixiaozhuo._06_api.Type3Action"></action>		
+	</package>
+</struts>

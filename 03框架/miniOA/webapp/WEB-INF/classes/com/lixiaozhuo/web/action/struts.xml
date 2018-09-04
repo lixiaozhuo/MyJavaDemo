@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="defaultPkg" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="checkLogin"
+				class="com.lixiaozhuo.web.interceptor.CheckLoginInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="checkLogin" />
+				<interceptor-ref name="paramsPrepareParamsStack" />
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		<action name="employee_*" class="com.lixiaozhuo.web.action.EmployseeAction"
+			method="{1}">
+			<interceptor-ref name="myStack" />
+			<result name="list">/WEB-INF/views/employee/list.jsp</result>
+			<result name="input">/WEB-INF/views/employee/input.jsp</result>
+			<result name="success" type="redirectAction">employee</result>
+		</action>
+		<action name="login" class="com.lixiaozhuo.web.action.LoginAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="redirectAction">employee</result>
+		</action>
+	</package>
+</struts>

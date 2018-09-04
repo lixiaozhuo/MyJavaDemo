@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans    
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true">
+		<property name="sqlSessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="userMapper" parent="baseMapper">
+		<property name="mapperInterface" value="com.lixiaozhuo.mapper.UserMapper" />
+	</bean>
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 存储所有package元素中共同的配置 -->
+	<package name="basePkg" extends="struts-default" namespace="/"
+		abstract="true">
+		<!-- 所有package的基础配置 -->
+	</package>
+
+	<package name="oaPkg" extends="basePkg" namespace="/oa">
+		<!-- oa模块的action配置 -->
+		<action name="test" class="com.lixiaozhuo._02_pkg_config.PkgAction"
+			method="excute">
+		</action>
+	</package>
+
+	<package name="crmPkg" extends="basePkg" namespace="/crm">
+		<!-- crm模块的action配置 -->
+	</package>
+</struts>

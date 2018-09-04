@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+	<input type="button" id="btn1" value="debug1" />
+	<input type="button" id="btn2" value="debug2" />
+	<div id="div1" style="background-color:pink">
+		1，引入问题：通过document.getElementById()找到的console内容和通过$();找不到元素console返回的内容不一样；
+		2，通过jQuery方法获取的页面元素，都是jQuery对象。
+		2，jQuery对象其实就是对DOM对象进行了包装，增强相关了方法，让开发者使用起来更加便利。
+		3，虽然jQuery对象包装了DOM对象但是两种不能混用，各位可以理解为jQuery对象与DOM对象是两个不类型的对象，但是我们调用jQuery对象的方法，事实上底层代码还是操作的是DOM对象。方法不能混合使用
+		jQuery对象和DOM对象的转换（jQuery对象上有很多DOM对象没有的方法）： //得到dom对象 var msg =
+		document.getElementById("msg"); //dom对象转换jquery对象 $(msg).hide(3000);
+		DOM对象和jQuery对象的转换（jquery中没有提供获取标签名的方式,所有需要把jquery对象转换为dom对象）：
+		//jquery对象 var username = $("#username"); //jquery对象转换为dom对象
+		console.debug(username[0].nodeName);//
+		console.debug(username.get(0));//get(0)等效于username[0]</div>
+</body>
+</html>
