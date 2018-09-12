@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.mapper.PermissionMapper">
+
+	<insert id="save" parameterType="Permission" useGeneratedKeys="true"
+		keyColumn="id" keyProperty="id">
+		INSERT INTO
+		t_permission(name,expression)
+		VALUE(#{name},#{expression})
+	</insert>
+
+	<update id="update">
+		UPDATE t_permission
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="expression != null">
+				expression=#{expression},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_permission
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultType="Permission">
+		SELECT *
+		FROM
+		t_permission
+		WHERE id=#{id}
+	</select>
+	
+	<select id="getByRole" resultType="Permission">
+		SELECT *
+		FROM t_permission ,role_permissionS
+		WHERE role_id = #{roleId} AND permission_id = id
+	</select>
+
+	<select id="list" resultType="Permission">
+		SELECT *
+		FROM t_permission
+	</select>
+	
+	<select id="queryCount" resultType="Long">
+		SELECT COUNT(*)
+		FROM t_permission
+	</select>
+	
+	<select id="query" resultType="Permission">
+		SELECT *
+		FROM t_permission
+		LIMIT #{startPage},#{pageSize}
+	</select>
+</mapper>

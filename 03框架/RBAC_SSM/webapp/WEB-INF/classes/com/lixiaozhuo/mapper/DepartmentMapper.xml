@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixiaozhuo.mapper.DepartmentMapper">
+
+	<insert id="save" parameterType="Department" useGeneratedKeys="true"
+		keyColumn="id" keyProperty="id">
+		INSERT INTO
+		t_department(name,sn)
+		VALUE(#{name},#{sn})
+	</insert>
+
+	<update id="update">
+		UPDATE t_department
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="sn != null">
+				sn=#{sn},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		FROM t_department
+		WHERE
+		id=#{id}
+	</delete>
+
+	<select id="get" resultType="Department">
+		SELECT *
+		FROM
+		t_department
+		WHERE id=#{id}
+	</select>
+	
+	<select id="list" resultType="Department">
+		SELECT *
+		FROM t_department
+	</select>
+	
+	<sql id="sqlCondition">
+		FROM t_department
+		<where>
+			<if test="keyword!=null">
+				AND name LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</sql>
+	
+	<select id="queryCount" resultType="Long">
+		SELECT COUNT(*)		
+		<include refid="sqlCondition"/>
+	</select>
+	
+	<select id="query" resultType="Department">
+		SELECT *
+		<include refid="sqlCondition"/>
+		LIMIT #{startPage},#{pageSize}
+	</select>
+</mapper>

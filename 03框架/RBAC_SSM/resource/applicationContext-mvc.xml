@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 支持springmvc注解驱动 -->
+	<mvc:annotation-driven/>
+	<!-- springmvc处理静态资源 -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 配置视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 注册拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截所有请求 -->
+			<mvc:mapping path="/**" />
+			<!-- 排除出去url路径 -->
+			<mvc:exclude-mapping path="/login" />
+			<bean class="com.lixiaozhuo.web.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<!-- 拦截所有请求 -->
+			<mvc:mapping path="/*" />
+			<mvc:exclude-mapping path="/login" />
+			<bean class="com.lixiaozhuo.web.interceptor.SecruityInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<import resource="classpath:applicationContext.xml"/>
+</beans>
