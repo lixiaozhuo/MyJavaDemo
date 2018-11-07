@@ -1,0 +1,11 @@
+com\lixiaozhuo\mapper\TbOrderShippingMapper.class
+com\lixiaozhuo\mapper\TbContentMapper.class
+com\lixiaozhuo\mapper\TbItemMapper.class
+com\lixiaozhuo\mapper\TbItemDescMapper.class
+com\lixiaozhuo\mapper\TbOrderMapper.class
+com\lixiaozhuo\mapper\TbItemParamMapper.class
+com\lixiaozhuo\mapper\TbOrderItemMapper.class
+com\lixiaozhuo\mapper\TbUserMapper.class
+com\lixiaozhuo\mapper\TbItemCatMapper.class
+com\lixiaozhuo\mapper\TbItemParamItemMapper.class
+com\lixiaozhuo\mapper\TbContentCategoryMapper.class

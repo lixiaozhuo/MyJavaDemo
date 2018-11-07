@@ -1,0 +1,3 @@
+com\lixiaozhuo\sso\service\TokenService.class
+com\lixiaozhuo\sso\service\LoginService.class
+com\lixiaozhuo\sso\service\RegisterService.class

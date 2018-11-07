@@ -1,0 +1,5 @@
+com\lixiaozhuo\search\mapper\ItemMapper.class
+com\lixiaozhuo\search\message\ItemMessageListener.class
+com\lixiaozhuo\search\dao\SearchDAO.class
+com\lixiaozhuo\search\service\impl\SearchItemServiceImpl.class
+com\lixiaozhuo\search\service\impl\SearchServiceImpl.class

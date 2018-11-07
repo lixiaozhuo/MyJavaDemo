@@ -1,0 +1,3 @@
+com\lixiaozhuo\sso\controller\LoginController.class
+com\lixiaozhuo\sso\controller\RegisterController.class
+com\lixiaozhuo\sso\controller\TokenController.class
